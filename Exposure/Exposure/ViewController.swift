@@ -8,10 +8,10 @@
 
 import UIKit
 //import SwiftyJSON
-//import Alamofire
 import AlamofireImage
 import AlamofireNetworkActivityIndicator
 import Kingfisher
+import MZCroppableView
 
 class ViewController: UIViewController {
 

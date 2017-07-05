@@ -5,6 +5,7 @@ PODS:
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
   - Kingfisher (3.9.1)
+  - MZCroppableView (0.1.0)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - AlamofireImage (from `https://github.com/Alamofire/AlamofireImage.git`)
   - AlamofireNetworkActivityIndicator (from `https://github.com/Alamofire/AlamofireNetworkActivityIndicator.git`)
   - Kingfisher (~> 3.0)
+  - MZCroppableView
   - SwiftyJSON (from `https://github.com/IBM-Swift/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
@@ -43,8 +45,9 @@ SPEC CHECKSUMS:
   AlamofireImage: 0ff319da83d6abb78a661d7296e742e7f65e15f5
   AlamofireNetworkActivityIndicator: 1b37f625e82da75465fc624bf26cf37cabd99a42
   Kingfisher: 6729a0baaa458245bfb8cd5a1296c71c10d6eb6c
+  MZCroppableView: e58bae623ae6b727ec819fc03daaf6ae0dec3232
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 74bc2e0648287d2281bc3eed54470b2c40d05e38
+PODFILE CHECKSUM: e160df785bfbfdd4f83da498f44f6e3872708021
 
 COCOAPODS: 1.2.1
