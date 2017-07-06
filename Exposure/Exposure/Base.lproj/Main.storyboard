@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,41 +24,36 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="re3-nQ-TDs">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
                             </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="GAD-uT-Lya">
-                                <rect key="frame" x="8" y="528" width="233" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GAD-uT-Lya">
+                                <rect key="frame" x="8" y="528" width="184" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="229" id="bDy-Ua-Qns"/>
+                                    <constraint firstAttribute="width" constant="180" id="bDy-Ua-Qns"/>
                                     <constraint firstAttribute="height" constant="30" id="tPl-Ae-0wN"/>
                                 </constraints>
                                 <connections>
                                     <action selector="sliderMove:" destination="BYZ-38-t0r" eventType="valueChanged" id="Owf-aS-Ome"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhE-2t-73e">
-                                <rect key="frame" x="245" y="537" width="59" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="59" id="8wU-08-SU7"/>
-                                    <constraint firstAttribute="height" constant="21" id="hoy-RJ-4If"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73L-GP-tAX">
+                                <rect key="frame" x="229" y="528" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="testSpeed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LRQ-yq-BeZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GAD-uT-Lya" secondAttribute="bottom" constant="10" id="2xI-QK-2Oj"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="qhE-2t-73e" secondAttribute="bottom" constant="10" id="J9d-YN-0Jz"/>
                             <constraint firstItem="GAD-uT-Lya" firstAttribute="top" secondItem="re3-nQ-TDs" secondAttribute="bottom" constant="20" id="Vu8-si-0d4"/>
                             <constraint firstAttribute="trailing" secondItem="re3-nQ-TDs" secondAttribute="trailing" id="ghx-2T-yXE"/>
                             <constraint firstItem="GAD-uT-Lya" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="iNF-Ph-PLa"/>
                             <constraint firstItem="re3-nQ-TDs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kY0-M9-WHs"/>
                             <constraint firstItem="re3-nQ-TDs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="pj6-Lt-TDi"/>
-                            <constraint firstItem="qhE-2t-73e" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="uNW-7n-00W"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="numOfSlider" destination="qhE-2t-73e" id="rnu-Ju-eFP"/>
                         <outlet property="testImageView" destination="re3-nQ-TDs" id="Ghu-73-Nzj"/>
                     </connections>
                 </viewController>

@@ -123,6 +123,7 @@
 				TargetAttributes = {
 					0E0CAAC11F0BFB4100752B2E = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = MZY793WJGF;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -336,6 +337,7 @@
 			baseConfigurationReference = 8A67645A1FFE786AE4A516E0 /* Pods-Exposure.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MZY793WJGF;
 				INFOPLIST_FILE = Exposure/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = come.makeschool.Exposure;
@@ -349,6 +351,7 @@
 			baseConfigurationReference = 3BE94BDD95BFD979126CBE9D /* Pods-Exposure.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MZY793WJGF;
 				INFOPLIST_FILE = Exposure/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = come.makeschool.Exposure;
@@ -376,6 +379,7 @@
 				0E0CAAD61F0BFB4100752B2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

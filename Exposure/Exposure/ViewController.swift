@@ -30,6 +30,8 @@ class ViewController: UIViewController {
 
         testImageView.image = try! UIImage(data: Data(contentsOf: URL(string: "https://firebasestorage.googleapis.com/v0/b/makestagram-45567.appspot.com/o/images%2Fposts%2FjCRXkHD9p4YqtIdSGpEEA2wkLWL2%2F2017-07-02T00:47:43Z.jpg?alt=media&token=afc50129-3aca-4750-bb9a-47f586d1ceb4")!))
         self.image_2 = self.testImageView.image
+        
+        testImageView.image = nil
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,15 +39,50 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    /* modify exposure for show */
     @IBAction func sliderMove(_ sender: UISlider) {
-        numOfSlider.text = String(sender.value)
         
-        if ( sender.value < 128 ) {
-            self.testImageView.image = self.image_1
-        } else {
-            self.testImageView.image = self.image_2
-        }
+        let image_temp1 = modifyAlpha(image_1, in_alpha: sender.value)
+        let image_temp2 = modifyAlpha(image_2, in_alpha: sender.value)
+        self.testImageView.image = mergedImageWith(frontImage: image_temp1, backgroundImage: image_temp2)
+
+    }
+    
+    /* save image to lib */
+    @IBAction func testSpeed(_ sender: Any) {
+        let image = self.testImageView.image
+
+        let imageData = UIImageJPEGRepresentation(image!, 0.6)
+        let compressedJPGImage = UIImage(data: imageData!)
+        UIImageWriteToSavedPhotosAlbum(compressedJPGImage!, nil, nil, nil)
+    }
+    
+    /* modify alpha for image */
+    func modifyAlpha(_ in_image: UIImage?, in_alpha: CFloat) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions((in_image?.size)!, false, (in_image?.scale)!)
+        in_image?.draw(at: .zero, blendMode: .normal, alpha: CGFloat(in_alpha))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
 
+    /* Just add a image on other image */
+    func mergedImageWith(frontImage:UIImage?, backgroundImage: UIImage?) -> UIImage{
+        if (backgroundImage == nil) {
+            return frontImage!
+        }
+        
+        let size = testImageView.frame.size
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        
+        backgroundImage?.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+        frontImage?.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height).insetBy(dx: size.width * 0, dy: size.height * 0))
+        
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
 }
-
