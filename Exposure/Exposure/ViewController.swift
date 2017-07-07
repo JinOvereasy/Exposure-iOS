@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         testImageView.image = try! UIImage(data: Data(contentsOf: URL(string: "https://firebasestorage.googleapis.com/v0/b/makestagram-45567.appspot.com/o/images%2Fposts%2FeoAn4vW2JvUMe89dbV8vRgkn7lt2%2F2017-07-02T00:47:16Z.jpg?alt=media&token=dd1e2f4d-846b-46e9-8f6d-70245d7e4acf")!))
+//        testImageView.image = try! UIImage(data: Data(contentsOf: URL(string: "https://firebasestorage.googleapis.com/v0/b/makestagram-45567.appspot.com/o/images%2Fposts%2FeoAn4vW2JvUMe89dbV8vRgkn7lt2%2F2017-07-06T18:22:57Z.jpg?alt=media&token=56605f89-0a66-4b7c-9140-c3eac67f9a0c")!))
         var imageSize = (self.testImageView.image?.size)
         var tempSize = imageSize
         tempSize?.width = (tempSize?.width)! / 5
@@ -40,8 +41,8 @@ class ViewController: UIViewController {
         tempSize?.height = (tempSize?.height)! / 5
         self.image_2 = self.testImageView.image?.af_imageScaled(to: tempSize!)
         
-        let image_temp1 = modifyAlpha(image_1, in_alpha: 0.5)
-        let image_temp2 = modifyAlpha(image_2, in_alpha: 0)
+        image_temp1 = modifyAlpha(image_1, in_alpha: 0.5)
+        image_temp2 = modifyAlpha(image_2, in_alpha: 0)
         self.testImageView.image = mergedImageWith(frontImage: image_temp1, backgroundImage: image_temp2)
     }
 
