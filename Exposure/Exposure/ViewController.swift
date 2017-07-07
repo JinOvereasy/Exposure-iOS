@@ -7,103 +7,80 @@
 //
 
 import UIKit
-//import SwiftyJSON
-//import Alamofire
-import AlamofireImage
-import AlamofireNetworkActivityIndicator
-import Kingfisher
+import ImagePicker
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ImagePickerDelegate {
+    
+    var window: UIWindow?
 
-    @IBOutlet weak var numOfSlider: UILabel!
-    @IBOutlet weak var testImageView: UIImageView!
-    
-    var image_1: UIImage?
-    var image_2: UIImage?
-    var image_temp1: UIImage?
-    var image_temp2: UIImage?
-    
+    @IBAction func ImagePicker(_ sender: Any) {
+        
+        let imagePickerController = ImagePickerController()
+        imagePickerController.imageLimit = 2
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        testImageView.image = try! UIImage(data: Data(contentsOf: URL(string: "https://firebasestorage.googleapis.com/v0/b/makestagram-45567.appspot.com/o/images%2Fposts%2FeoAn4vW2JvUMe89dbV8vRgkn7lt2%2F2017-07-02T00:47:16Z.jpg?alt=media&token=dd1e2f4d-846b-46e9-8f6d-70245d7e4acf")!))
-//        testImageView.image = try! UIImage(data: Data(contentsOf: URL(string: "https://firebasestorage.googleapis.com/v0/b/makestagram-45567.appspot.com/o/images%2Fposts%2FeoAn4vW2JvUMe89dbV8vRgkn7lt2%2F2017-07-06T18:22:57Z.jpg?alt=media&token=56605f89-0a66-4b7c-9140-c3eac67f9a0c")!))
-        var imageSize = (self.testImageView.image?.size)
-        var tempSize = imageSize
-        tempSize?.width = (tempSize?.width)! / 5
-        tempSize?.height = (tempSize?.height)! / 5
-        self.image_1 = self.testImageView.image?.af_imageScaled(to: tempSize!)
-
-        testImageView.image = try! UIImage(data: Data(contentsOf: URL(string: "https://firebasestorage.googleapis.com/v0/b/makestagram-45567.appspot.com/o/images%2Fposts%2FjCRXkHD9p4YqtIdSGpEEA2wkLWL2%2F2017-07-02T00:47:43Z.jpg?alt=media&token=afc50129-3aca-4750-bb9a-47f586d1ceb4")!))
-        imageSize = (self.testImageView.image?.size)
-        tempSize = imageSize
-        tempSize?.width = (tempSize?.width)! / 5
-        tempSize?.height = (tempSize?.height)! / 5
-        self.image_2 = self.testImageView.image?.af_imageScaled(to: tempSize!)
-        
-        image_temp1 = modifyAlpha(image_1, in_alpha: 0.5)
-        image_temp2 = modifyAlpha(image_2, in_alpha: 0)
-        self.testImageView.image = mergedImageWith(frontImage: image_temp1, backgroundImage: image_temp2)
     }
 
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        // Hide the navigation bar on the this view controller
+//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+//    }
+//    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        
+//        // Show the navigation bar on other view controllers
+//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+//    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    /* first slider move */
-    @IBAction func firstSliderMove(_ sender: UISlider) {
-        image_temp1 = modifyAlpha(image_1, in_alpha: sender.value)
-        makepicture()
-    }
-
     
-    /* second slider move */
-    @IBAction func sliderMove(_ sender: UISlider) {
-        image_temp2 = modifyAlpha(image_2, in_alpha: sender.value)
-        makepicture()
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        //
     }
     
-    /* make picture */
-    func makepicture() {
-        self.testImageView.image = mergedImageWith(frontImage: image_temp1, backgroundImage: image_temp2)
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        //The images array contains the 2 images the user selected 
+        showImageControllerWithImages(image1: images[0], image2: images[1])
+    
     }
     
-    /* save image to lib */
-    @IBAction func testSpeed(_ sender: Any) {
-        let image = self.testImageView.image
-
-        let imageData = UIImageJPEGRepresentation(image!, 0.6)
-        let compressedJPGImage = UIImage(data: imageData!)
-        UIImageWriteToSavedPhotosAlbum(compressedJPGImage!, nil, nil, nil)
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        //
     }
     
-    /* modify alpha for image */
-    func modifyAlpha(_ in_image: UIImage?, in_alpha: CFloat) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions((in_image?.size)!, false, (in_image?.scale)!)
-        in_image?.draw(at: .zero, blendMode: .normal, alpha: CGFloat(in_alpha))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+    func showImageControllerWithImages(image1: UIImage, image2: UIImage) {
         
-        return newImage
-    }
+        dismiss(animated: true) {
 
-    /* Just add a image on other image */
-    func mergedImageWith(frontImage:UIImage?, backgroundImage: UIImage?) -> UIImage{
-        if (backgroundImage == nil) {
-            return frontImage!
+            
+            //self.navigationController?.pushViewController(imageController, animated: true)
+            
+            let storyBoard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let imageController2 = storyBoard.instantiateViewController(withIdentifier: "ImageController") as! ImageController
+            
+
+//            imageController.testImageView.image = imageController.image1
+            imageController2.image1 = image1
+            imageController2.image2 = image2
+            
+            self.present(imageController2, animated: true, completion: nil)
+            
+            imageController2.image_temp1 = imageController2.modifyAlpha(imageController2.image1, in_alpha: 0.5)
+            imageController2.image_temp2 = imageController2.modifyAlpha(imageController2.image2, in_alpha: 0.0)
+            imageController2.testImageView.image = imageController2.image_temp1
         }
-        
-        let size = testImageView.frame.size
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        
-        backgroundImage?.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
-        frontImage?.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height).insetBy(dx: size.width * 0, dy: size.height * 0))
-        
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        return newImage
+
     }
-    
 }
+

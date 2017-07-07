@@ -6,10 +6,8 @@ target 'Exposure' do
   use_frameworks!
 
   # Pods for Exposure
+  
+  pod 'ImagePicker'
   pod 'Kingfisher', '~> 3.0'
-  pod 'SwiftyJSON', :git => 'https://github.com/IBM-Swift/SwiftyJSON.git'
-  pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git'
-  pod 'AlamofireImage', :git => 'https://github.com/Alamofire/AlamofireImage.git'
-  pod 'AlamofireNetworkActivityIndicator', :git => 'https://github.com/Alamofire/AlamofireNetworkActivityIndicator.git'
-
+  
 end
